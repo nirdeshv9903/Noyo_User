@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "1067162253012",
+    "firebase_url": "https://noyo-c6734-default-rtdb.firebaseio.com",
+    "project_id": "noyo-c6734",
+    "storage_bucket": "noyo-c6734.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067162253012:android:2049cb67195adc87ebed41",
+        "android_client_info": {
+          "package_name": "com.app.noyo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz9hD148GIL2MTfXXP6ooTTPR2Q9sJrgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067162253012:android:9e0161b8b7af974bebed41",
+        "android_client_info": {
+          "package_name": "com.app.noyodriver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz9hD148GIL2MTfXXP6ooTTPR2Q9sJrgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
