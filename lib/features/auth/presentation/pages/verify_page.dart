@@ -8,6 +8,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../common/common.dart';
 import '../../../../core/utils/custom_button.dart';
 import '../../../../core/utils/custom_loader.dart';
+import '../../../../core/utils/custom_snack_bar.dart';
 import '../../../../core/utils/custom_textfield.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../home/presentation/pages/home_page.dart';
@@ -28,6 +29,8 @@ class VerifyPage extends StatefulWidget {
 class _VerifyPageState extends State<VerifyPage>
     with SingleTickerProviderStateMixin {
   Timer? timer;
+  bool hasOtpError = false; // Track OTP error state
+
   timerCount(BuildContext cont,
       {required int duration, bool? isCloseTimer}) async {
     int count = duration;
@@ -110,6 +113,39 @@ class _VerifyPageState extends State<VerifyPage>
             context.read<LoaderBloc>().add(UpdateUserLocationEvent());
             Navigator.pushNamedAndRemoveUntil(
                 context, HomePage.routeName, (route) => false);
+          } else if (state is SignInWithOTPFailureState) {
+            // Handle OTP verification failure
+            setState(() {
+              hasOtpError = true;
+            });
+            showToast(
+              isError: true,
+              message: AppLocalizations.of(context)!.enterValidOtp,
+            );
+            // Clear OTP field
+            context.read<AuthBloc>().otpController.clear();
+          } else if (state is ConfirmOrOTPVerifyFailureState) {
+            // Handle OTP verification failure
+            setState(() {
+              hasOtpError = true;
+            });
+            showToast(
+              isError: true,
+              message: AppLocalizations.of(context)!.enterValidOtp,
+            );
+            // Clear OTP field
+            context.read<AuthBloc>().otpController.clear();
+          } else if (state is LoginFailureState) {
+            // Handle login failure
+            setState(() {
+              hasOtpError = true;
+            });
+            showToast(
+              isError: true,
+              message: AppLocalizations.of(context)!.enterValidOtp,
+            );
+            // Clear OTP field
+            context.read<AuthBloc>().otpController.clear();
           }
         },
         child: BlocBuilder<AuthBloc, AuthState>(
@@ -466,35 +502,79 @@ class _VerifyPageState extends State<VerifyPage>
             borderRadius: BorderRadius.circular(12),
             fieldHeight: 50,
             fieldWidth: 50,
-            activeFillColor: AppColors.surface,
-            inactiveFillColor: AppColors.surface,
-            inactiveColor: AppColors.border,
-            selectedFillColor: AppColors.surface,
-            selectedColor: AppColors.primary,
+            activeFillColor:
+                hasOtpError ? AppColors.errorLight : AppColors.surface,
+            inactiveFillColor:
+                hasOtpError ? AppColors.errorLight : AppColors.surface,
+            inactiveColor: hasOtpError ? AppColors.error : AppColors.border,
+            selectedFillColor:
+                hasOtpError ? AppColors.errorLight : AppColors.surface,
+            selectedColor: hasOtpError ? AppColors.error : AppColors.primary,
             selectedBorderWidth: 2,
             inactiveBorderWidth: 1,
             activeBorderWidth: 2,
-            activeColor: AppColors.primary,
+            activeColor: hasOtpError ? AppColors.error : AppColors.primary,
           ),
-          cursorColor: AppColors.primary,
+          cursorColor: hasOtpError ? AppColors.error : AppColors.primary,
           animationDuration: const Duration(milliseconds: 300),
           enableActiveFill: true,
           enablePinAutofill: false,
           autoDisposeControllers: false,
           keyboardType: TextInputType.number,
           boxShadows: [
-            const BoxShadow(
-              offset: Offset(0, 2),
-              color: AppColors.shadow,
+            BoxShadow(
+              offset: const Offset(0, 2),
+              color: hasOtpError
+                  ? AppColors.error.withValues(alpha: 0.2)
+                  : AppColors.shadow,
               blurRadius: 8,
             )
           ],
           beforeTextPaste: (_) => false,
-          onChanged: (_) => context.read<AuthBloc>().add(OTPOnChangeEvent()),
+          onChanged: (_) {
+            // Clear error state when user starts typing
+            if (hasOtpError) {
+              setState(() {
+                hasOtpError = false;
+              });
+            }
+            context.read<AuthBloc>().add(OTPOnChangeEvent());
+          },
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
           ],
         ),
+        // Error message for wrong OTP
+        if (hasOtpError) ...[
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: AppColors.errorLight,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.error_outline,
+                  color: AppColors.error,
+                  size: 16,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    AppLocalizations.of(context)!.enterValidOtp,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.error,
+                          fontWeight: FontWeight.w500,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
         const SizedBox(height: 12),
         InkWell(
           onTap: context.read<AuthBloc>().timerDuration != 0

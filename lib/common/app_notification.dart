@@ -21,7 +21,6 @@ void notificationTapBackground(NotificationResponse notificationResponse) {
   isGeneral = true;
 }
 
-
 var androidDetails = const AndroidNotificationDetails(
   '54321',
   'normal_notification',

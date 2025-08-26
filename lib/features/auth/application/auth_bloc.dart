@@ -124,13 +124,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             .dialCode;
         countryCode = countries
             .firstWhere((element) => element.datumDefault == true)
-            .code;    
+            .code;
         flagImage = countries
             .firstWhere((element) => element.datumDefault == true)
             .flag!;
         dialMaxLength = countries
             .firstWhere((element) => element.datumDefault == true)
-            .dialMaxLength; 
+            .dialMaxLength;
         emit(CountrySuccessState());
       },
     );
@@ -606,9 +606,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           showToast(message: error.message!);
         } else {
           if (!event.isOtpLogin) {
-            showToast(message: AppLocalizations.of(event.context)!.validPassword);
+            showToast(
+                message: AppLocalizations.of(event.context)!.validPassword);
           } else {
-            showToast(message: AppLocalizations.of(event.context)!.enterValidOtp);
+            showToast(
+                message: AppLocalizations.of(event.context)!.enterValidOtp);
           }
         }
         isLoading = false;

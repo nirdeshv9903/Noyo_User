@@ -42,7 +42,7 @@ Widget packageList(BuildContext context, BookingPageArguments arg) {
                     ),
                   ),
                   SizedBox(height: size.width * 0.04),
-                  
+
                   // Service Type Selection
                   if (context.read<BookingBloc>().userData != null &&
                       context
@@ -50,18 +50,20 @@ Widget packageList(BuildContext context, BookingPageArguments arg) {
                               .userData!
                               .enableModulesForApplications ==
                           'both') ...[
-                    _buildSectionHeader(context, AppLocalizations.of(context)!.service),
+                    _buildSectionHeader(
+                        context, AppLocalizations.of(context)!.service),
                     SizedBox(height: size.width * 0.03),
                     _buildServiceTypeSelector(context, size, arg),
                     SizedBox(height: size.width * 0.04),
                     _buildDivider(context),
                     SizedBox(height: size.width * 0.04),
                   ],
-                  
+
                   // Package Selection
-                  _buildSectionHeader(context, AppLocalizations.of(context)!.selectPackage),
+                  _buildSectionHeader(
+                      context, AppLocalizations.of(context)!.selectPackage),
                   SizedBox(height: size.width * 0.03),
-                  
+
                   if (context
                       .read<BookingBloc>()
                       .rentalPackagesList
@@ -79,7 +81,8 @@ Widget packageList(BuildContext context, BookingPageArguments arg) {
                               .read<BookingBloc>()
                               .rentalPackagesList
                               .elementAt(index);
-                          return _buildPackageCard(context, size, package, index);
+                          return _buildPackageCard(
+                              context, size, package, index);
                         },
                         separatorBuilder: (context, index) {
                           return SizedBox(height: size.width * 0.03);
@@ -87,7 +90,7 @@ Widget packageList(BuildContext context, BookingPageArguments arg) {
                       ),
                     ),
                   ],
-                  
+
                   if (context.read<BookingBloc>().rentalPackagesList.isEmpty)
                     Expanded(
                       child: Center(
@@ -97,14 +100,22 @@ Widget packageList(BuildContext context, BookingPageArguments arg) {
                             Icon(
                               Icons.inbox_outlined,
                               size: 64,
-                              color: Theme.of(context).primaryColorDark.withOpacity(0.3),
+                              color: Theme.of(context)
+                                  .primaryColorDark
+                                  .withOpacity(0.3),
                             ),
                             SizedBox(height: size.width * 0.03),
                             MyText(
-                              text: AppLocalizations.of(context)!.noDataAvailable,
-                              textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Theme.of(context).primaryColorDark.withOpacity(0.6),
-                              ),
+                              text:
+                                  AppLocalizations.of(context)!.noDataAvailable,
+                              textStyle: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .primaryColorDark
+                                        .withOpacity(0.6),
+                                  ),
                             ),
                           ],
                         ),
@@ -114,7 +125,7 @@ Widget packageList(BuildContext context, BookingPageArguments arg) {
               ),
             ),
           ),
-          
+
           // Bottom Button
           Positioned(
             bottom: 0,
@@ -137,9 +148,7 @@ Widget packageList(BuildContext context, BookingPageArguments arg) {
                 height: size.width * 0.12,
                 buttonName: AppLocalizations.of(context)!.continueN,
                 onTap: () {
-                  context
-                      .read<BookingBloc>()
-                      .add(RentalPackageConfirmEvent(
+                  context.read<BookingBloc>().add(RentalPackageConfirmEvent(
                         picklat: context
                             .read<BookingBloc>()
                             .pickUpAddressList
@@ -167,13 +176,14 @@ Widget _buildSectionHeader(BuildContext context, String title) {
   return MyText(
     text: title,
     textStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-      fontWeight: FontWeight.w600,
-      color: Theme.of(context).primaryColorDark,
-    ),
+          fontWeight: FontWeight.w600,
+          color: Theme.of(context).primaryColorDark,
+        ),
   );
 }
 
-Widget _buildServiceTypeSelector(BuildContext context, Size size, BookingPageArguments arg) {
+Widget _buildServiceTypeSelector(
+    BuildContext context, Size size, BookingPageArguments arg) {
   return Row(
     children: [
       if ((arg.userData.enableModulesForApplications == 'both' ||
@@ -214,7 +224,7 @@ Widget _buildServiceTypeCard(
   IconData icon,
 ) {
   final isSelected = context.read<BookingBloc>().transportType == value;
-  
+
   return InkWell(
     onTap: () {
       context.read<BookingBloc>().selectedPackageIndex = 0;
@@ -223,20 +233,20 @@ Widget _buildServiceTypeCard(
       context.read<BookingBloc>().isSavedCardChoose = false;
       context.read<BookingBloc>().selectedCardToken = '';
       context.read<BookingBloc>().add(BookingRentalEtaRequestEvent(
-        picklat: context
-            .read<BookingBloc>()
-            .pickUpAddressList
-            .first
-            .lat
-            .toString(),
-        picklng: context
-            .read<BookingBloc>()
-            .pickUpAddressList
-            .first
-            .lng
-            .toString(),
-        transporttype: value,
-      ));
+            picklat: context
+                .read<BookingBloc>()
+                .pickUpAddressList
+                .first
+                .lat
+                .toString(),
+            picklng: context
+                .read<BookingBloc>()
+                .pickUpAddressList
+                .first
+                .lng
+                .toString(),
+            transporttype: value,
+          ));
       context.read<BookingBloc>().add(UpdateEvent());
     },
     borderRadius: BorderRadius.circular(16),
@@ -295,11 +305,11 @@ Widget _buildServiceTypeCard(
           MyText(
             text: title,
             textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: isSelected
-                  ? Theme.of(context).primaryColor
-                  : Theme.of(context).primaryColorDark,
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-            ),
+                  color: isSelected
+                      ? Theme.of(context).primaryColor
+                      : Theme.of(context).primaryColorDark,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                ),
           ),
         ],
       ),
@@ -317,13 +327,15 @@ Widget _buildDivider(BuildContext context) {
   );
 }
 
-Widget _buildPackageCard(BuildContext context, Size size, dynamic package, int index) {
+Widget _buildPackageCard(
+    BuildContext context, Size size, dynamic package, int index) {
   final isSelected = index == context.read<BookingBloc>().selectedPackageIndex;
-  
+
   return InkWell(
     onTap: () {
-      context.read<BookingBloc>().add(
-          BookingRentalPackageSelectEvent(selectedPackageIndex: index));
+      context
+          .read<BookingBloc>()
+          .add(BookingRentalPackageSelectEvent(selectedPackageIndex: index));
     },
     borderRadius: BorderRadius.circular(16),
     child: AnimatedContainer(
@@ -365,11 +377,11 @@ Widget _buildPackageCard(BuildContext context, Size size, dynamic package, int i
                 MyText(
                   text: package.packageName,
                   textStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: isSelected
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context).primaryColorDark,
-                  ),
+                        fontWeight: FontWeight.w600,
+                        color: isSelected
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context).primaryColorDark,
+                      ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -377,9 +389,10 @@ Widget _buildPackageCard(BuildContext context, Size size, dynamic package, int i
                 MyText(
                   text: package.shortDescription,
                   textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).primaryColorDark.withOpacity(0.6),
-                    fontSize: 13,
-                  ),
+                        color:
+                            Theme.of(context).primaryColorDark.withOpacity(0.6),
+                        fontSize: 13,
+                      ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -399,14 +412,15 @@ Widget _buildPackageCard(BuildContext context, Size size, dynamic package, int i
               borderRadius: BorderRadius.circular(12),
             ),
             child: MyText(
-              text: '${package.currency.toString()} ${package.minPrice!.toStringAsFixed(1)} - ${package.currency.toString()} ${package.maxPrice!.toStringAsFixed(1)}',
+              text:
+                  '${package.currency.toString()} ${package.minPrice!.toStringAsFixed(1)} - ${package.currency.toString()} ${package.maxPrice!.toStringAsFixed(1)}',
               textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: isSelected
-                    ? Colors.white
-                    : Theme.of(context).primaryColorDark,
-              ),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: isSelected
+                        ? Colors.white
+                        : Theme.of(context).primaryColorDark,
+                  ),
             ),
           ),
         ],

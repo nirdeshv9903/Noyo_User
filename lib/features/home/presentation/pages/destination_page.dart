@@ -973,7 +973,7 @@ class _DestinationPageState extends State<DestinationPage> {
   }
 
   Widget buildFavoriteLocations(BuildContext context,
-      List<FavoriteLocationData> favLocations, Size size,HomeBloc homeBloc) {
+      List<FavoriteLocationData> favLocations, Size size, HomeBloc homeBloc) {
     bool isHomeAvailable = false;
     bool isWorkAvailable = false;
     bool isOthersAvailable = false;
@@ -997,9 +997,9 @@ class _DestinationPageState extends State<DestinationPage> {
           child: MyText(
             text: "Favorite Locations",
             textStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).primaryColorDark,
-            ),
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).primaryColorDark,
+                ),
           ),
         ),
         SingleChildScrollView(
@@ -1019,8 +1019,7 @@ class _DestinationPageState extends State<DestinationPage> {
                         onTap: () {
                           homeBloc.add(FavLocationSelectEvent(
                               address: location,
-                              isPickupSelect:
-                                  homeBloc.isPickupSelect));
+                              isPickupSelect: homeBloc.isPickupSelect));
                         },
                         borderRadius: BorderRadius.circular(16),
                         child: Container(
@@ -1032,7 +1031,9 @@ class _DestinationPageState extends State<DestinationPage> {
                             color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(
-                              color: Theme.of(context).dividerColor.withOpacity(0.2),
+                              color: Theme.of(context)
+                                  .dividerColor
+                                  .withOpacity(0.2),
                             ),
                             boxShadow: [
                               BoxShadow(
@@ -1047,7 +1048,9 @@ class _DestinationPageState extends State<DestinationPage> {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.02),
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor.withOpacity(0.1),
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.1),
                                   shape: BoxShape.circle,
                                 ),
                                 child: Icon(
@@ -1066,7 +1069,8 @@ class _DestinationPageState extends State<DestinationPage> {
                                 text: location.addressName,
                                 textStyle: Theme.of(context)
                                     .textTheme
-                                    .bodyMedium?.copyWith(
+                                    .bodyMedium
+                                    ?.copyWith(
                                       fontWeight: FontWeight.w600,
                                       color: Theme.of(context).primaryColorDark,
                                     ),
@@ -1094,8 +1098,7 @@ class _DestinationPageState extends State<DestinationPage> {
                             (value) {
                               if (!context.mounted) return;
                               if (value != null) {
-                                homeBloc.userData =
-                                    value as UserDetail;
+                                homeBloc.userData = value as UserDetail;
                                 homeBloc.add(UpdateEvent());
                               }
                             },
@@ -1111,7 +1114,9 @@ class _DestinationPageState extends State<DestinationPage> {
                             color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(
-                              color: Theme.of(context).dividerColor.withOpacity(0.2),
+                              color: Theme.of(context)
+                                  .dividerColor
+                                  .withOpacity(0.2),
                             ),
                             boxShadow: [
                               BoxShadow(
@@ -1126,7 +1131,9 @@ class _DestinationPageState extends State<DestinationPage> {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.02),
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor.withOpacity(0.1),
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.1),
                                   shape: BoxShape.circle,
                                 ),
                                 child: Icon(
@@ -1140,7 +1147,8 @@ class _DestinationPageState extends State<DestinationPage> {
                                 text: "Add Home",
                                 textStyle: Theme.of(context)
                                     .textTheme
-                                    .bodyMedium?.copyWith(
+                                    .bodyMedium
+                                    ?.copyWith(
                                       fontWeight: FontWeight.w600,
                                       color: Theme.of(context).primaryColorDark,
                                     ),
@@ -1163,8 +1171,7 @@ class _DestinationPageState extends State<DestinationPage> {
                             (value) {
                               if (!context.mounted) return;
                               if (value != null) {
-                                homeBloc.userData =
-                                    value as UserDetail;
+                                homeBloc.userData = value as UserDetail;
                                 homeBloc.add(UpdateEvent());
                               }
                             },
@@ -1180,7 +1187,9 @@ class _DestinationPageState extends State<DestinationPage> {
                             color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(
-                              color: Theme.of(context).dividerColor.withOpacity(0.2),
+                              color: Theme.of(context)
+                                  .dividerColor
+                                  .withOpacity(0.2),
                             ),
                             boxShadow: [
                               BoxShadow(
@@ -1195,7 +1204,9 @@ class _DestinationPageState extends State<DestinationPage> {
                               Container(
                                 padding: EdgeInsets.all(size.width * 0.02),
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor.withOpacity(0.1),
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.1),
                                   shape: BoxShape.circle,
                                 ),
                                 child: Icon(
@@ -1209,7 +1220,8 @@ class _DestinationPageState extends State<DestinationPage> {
                                 text: "Add Work",
                                 textStyle: Theme.of(context)
                                     .textTheme
-                                    .bodyMedium?.copyWith(
+                                    .bodyMedium
+                                    ?.copyWith(
                                       fontWeight: FontWeight.w600,
                                       color: Theme.of(context).primaryColorDark,
                                     ),

@@ -114,21 +114,21 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                   ),
                 ),
                 SizedBox(height: size.width * 0.04),
-                
+
                 // Welcome Header
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Expanded(
                       child: MyText(
-                        text: '${AppLocalizations.of(context)!.welcome}, ${AppLocalizations.of(context)!.user}',
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .titleLarge?.copyWith(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context).primaryColorDark,
-                            ),
+                        text:
+                            '${AppLocalizations.of(context)!.welcome}, ${AppLocalizations.of(context)!.user}',
+                        textStyle:
+                            Theme.of(context).textTheme.titleLarge?.copyWith(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  color: Theme.of(context).primaryColorDark,
+                                ),
                       ),
                     ),
                     SizedBox(width: size.width * 0.02),
@@ -136,17 +136,18 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                   ],
                 ),
                 SizedBox(height: size.width * 0.06),
-                
+
                 // Input Field Label
                 MyText(
-                  text: '${AppLocalizations.of(context)!.email}/${AppLocalizations.of(context)!.mobile}',
+                  text:
+                      '${AppLocalizations.of(context)!.email}/${AppLocalizations.of(context)!.mobile}',
                   textStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).primaryColorDark,
-                    fontWeight: FontWeight.w600,
-                  ),
+                        color: Theme.of(context).primaryColorDark,
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
                 SizedBox(height: size.width * 0.03),
-                
+
                 // Input Field
                 Form(
                   key: widget.formKey,
@@ -169,12 +170,14 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                       controller: widget.emailOrMobile,
                       filled: false,
                       focusNode: widget.focusNode,
-                      hintText: AppLocalizations.of(context)!.emailAddressOrMobileNumber,
+                      hintText: AppLocalizations.of(context)!
+                          .emailAddressOrMobileNumber,
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: size.width * 0.04,
                         vertical: size.width * 0.035,
                       ),
-                      prefixConstraints: BoxConstraints(maxWidth: size.width * 0.25),
+                      prefixConstraints:
+                          BoxConstraints(maxWidth: size.width * 0.25),
                       prefixIcon: !widget.isLoginByEmail
                           ? Container(
                               margin: EdgeInsets.only(left: size.width * 0.02),
@@ -187,7 +190,9 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                                     vertical: size.width * 0.015,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Theme.of(context).primaryColor.withOpacity(0.1),
+                                    color: Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(0.1),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Row(
@@ -198,15 +203,18 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                                         width: 25,
                                         decoration: BoxDecoration(
                                           shape: BoxShape.rectangle,
-                                          borderRadius: BorderRadius.circular(4),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
                                         ),
                                         child: CachedNetworkImage(
                                           imageUrl: widget.flagImage,
                                           fit: BoxFit.fill,
-                                          placeholder: (context, url) => const Center(
+                                          placeholder: (context, url) =>
+                                              const Center(
                                             child: Loader(),
                                           ),
-                                          errorWidget: (context, url, error) => const Center(
+                                          errorWidget: (context, url, error) =>
+                                              const Center(
                                             child: Text(""),
                                           ),
                                         ),
@@ -214,10 +222,14 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                                       SizedBox(width: size.width * 0.01),
                                       MyText(
                                         text: widget.dialCode,
-                                        textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                          fontWeight: FontWeight.w600,
-                                          color: Theme.of(context).primaryColor,
-                                        ),
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -242,9 +254,9 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                     ),
                   ),
                 ),
-                
+
                 SizedBox(height: size.width * 0.06),
-                
+
                 // Continue Button
                 Container(
                   width: size.width,
@@ -278,9 +290,9 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                     },
                   ),
                 ),
-                
+
                 SizedBox(height: size.width * 0.04),
-                
+
                 // Terms and Privacy Policy
                 Container(
                   width: size.width,
@@ -294,11 +306,12 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                     children: [
                       MyText(
                         text: '${AppLocalizations.of(context)!.byContinuing} ',
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .bodySmall?.copyWith(
-                              color: Theme.of(context).primaryColorDark.withOpacity(0.7),
-                            ),
+                        textStyle:
+                            Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: Theme.of(context)
+                                      .primaryColorDark
+                                      .withOpacity(0.7),
+                                ),
                       ),
                       InkWell(
                         onTap: () async {
@@ -310,22 +323,22 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                         },
                         child: MyText(
                           text: '${AppLocalizations.of(context)!.terms} ',
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: Theme.of(context).primaryColor,
-                                decoration: TextDecoration.underline,
-                              ),
+                          textStyle:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context).primaryColor,
+                                    decoration: TextDecoration.underline,
+                                  ),
                         ),
                       ),
                       MyText(
                         text: AppLocalizations.of(context)!.and,
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .bodySmall?.copyWith(
-                              color: Theme.of(context).primaryColorDark.withOpacity(0.7),
-                            ),
+                        textStyle:
+                            Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: Theme.of(context)
+                                      .primaryColorDark
+                                      .withOpacity(0.7),
+                                ),
                       ),
                       InkWell(
                         onTap: () async {
@@ -336,14 +349,14 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                                   url: AppConstants.privacyPolicy));
                         },
                         child: MyText(
-                          text: '${AppLocalizations.of(context)!.privacyPolicy} ',
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: Theme.of(context).primaryColor,
-                                decoration: TextDecoration.underline,
-                              ),
+                          text:
+                              '${AppLocalizations.of(context)!.privacyPolicy} ',
+                          textStyle:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context).primaryColor,
+                                    decoration: TextDecoration.underline,
+                                  ),
                         ),
                       ),
                     ],
@@ -386,18 +399,21 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                           Container(
                             padding: EdgeInsets.all(size.width * 0.04),
                             decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor.withOpacity(0.1),
+                              color: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(0.1),
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                if(!widget.isLoginByEmail) ...[
+                                if (!widget.isLoginByEmail) ...[
                                   MyText(
                                     text: widget.dialCode,
                                     textStyle: Theme.of(context)
                                         .textTheme
-                                        .titleMedium?.copyWith(
+                                        .titleMedium
+                                        ?.copyWith(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600,
                                           color: Theme.of(context).primaryColor,
@@ -412,10 +428,12 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                                     textAlign: TextAlign.center,
                                     textStyle: Theme.of(context)
                                         .textTheme
-                                        .titleMedium?.copyWith(
+                                        .titleMedium
+                                        ?.copyWith(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600,
-                                          color: Theme.of(context).primaryColorDark,
+                                          color: Theme.of(context)
+                                              .primaryColorDark,
                                         ),
                                   ),
                                 ),
@@ -423,31 +441,39 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                             ),
                           ),
                           SizedBox(height: size.width * 0.04),
-                          
+
                           // Confirmation Text
                           MyText(
                             text: AppLocalizations.of(context)!.isThisCorrect,
-                            textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Theme.of(context).primaryColorDark.withOpacity(0.7),
-                            ),
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .primaryColorDark
+                                      .withOpacity(0.7),
+                                ),
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(height: size.width * 0.02),
-                          
+
                           // Edit Link
                           InkWell(
                             onTap: _closeDialog,
                             child: MyText(
                               text: AppLocalizations.of(context)!.edit,
-                              textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: Theme.of(context).primaryColor,
-                                decoration: TextDecoration.underline,
-                              ),
+                              textStyle: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context).primaryColor,
+                                    decoration: TextDecoration.underline,
+                                  ),
                             ),
                           ),
                           SizedBox(height: size.width * 0.04),
-                          
+
                           // Continue Button
                           Container(
                             width: size.width,
@@ -455,14 +481,17 @@ class AuthBottomSheetWidgetState extends State<AuthBottomSheetWidget>
                               borderRadius: BorderRadius.circular(16),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).primaryColor.withOpacity(0.3),
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.3),
                                   blurRadius: 8,
                                   offset: const Offset(0, 2),
                                 ),
                               ],
                             ),
                             child: CustomButton(
-                              buttonName: AppLocalizations.of(context)!.continueN,
+                              buttonName:
+                                  AppLocalizations.of(context)!.continueN,
                               borderRadius: 16,
                               width: size.width,
                               height: size.width * 0.12,

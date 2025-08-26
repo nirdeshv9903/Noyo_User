@@ -55,7 +55,7 @@ class AuthRepositoryImpl implements AuthRepository {
       Response response = await _authApi.verifyUserApi(
           emailOrMobileNumber: emailOrMobileNumber,
           isLoginByEmail: isLoginByEmail);
-          debugPrint('verifyuser : $response');
+      debugPrint('verifyuser : $response');
 
       if (response.data == null || response.data == '') {
         return Left(GetDataFailure(message: 'User bad request'));
@@ -112,7 +112,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       Response response = await _authApi.sendMobileOtpApi(
           mobileNumber: mobileNumber, dialCode: dialCode);
-          debugPrint('getUserHistoryDetails : $response');
+      debugPrint('getUserHistoryDetails : $response');
 
       if (response.data == null || response.data == '') {
         return Left(GetDataFailure(message: 'User bad request'));
@@ -142,7 +142,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       Response response = await _authApi.verifyMobileOtpApi(
           mobileNumber: mobileNumber, otp: otp);
-          debugPrint('getUserHistoryDetails : $response');
+      debugPrint('getUserHistoryDetails : $response');
 
       if (response.data == null || response.data == '') {
         return Left(GetDataFailure(message: 'User bad request'));
@@ -171,7 +171,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       Response response =
           await _authApi.sendEmailOtpApi(emailAddress: emailAddress);
-          debugPrint('getUserHistoryDetails : $response');
+      debugPrint('getUserHistoryDetails : $response');
 
       if (response.data == null || response.data == '') {
         return Left(GetDataFailure(message: 'User bad request'));
@@ -202,7 +202,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       Response response = await _authApi.verifyEmailOtpApi(
           emailAddress: emailAddress, otp: otp);
-          debugPrint('getUserHistoryDetails : $response');
+      debugPrint('getUserHistoryDetails : $response');
 
       if (response.data == null || response.data == '') {
         return Left(GetDataFailure(message: 'User bad request'));
@@ -295,7 +295,7 @@ class AuthRepositoryImpl implements AuthRepository {
           countryCode: countryCode,
           gender: gender,
           profileImage: profileImage);
-          debugPrint('userRegister : $response');
+      debugPrint('userRegister : $response');
 
       if (response.data == null || response.data == '') {
         return Left(GetDataFailure(message: 'User bad request'));
@@ -336,7 +336,7 @@ class AuthRepositoryImpl implements AuthRepository {
           emailOrMobile: emailOrMobile,
           password: password,
           isLoginByEmail: isLoginByEmail);
-          debugPrint('updatePassword : $response');
+      debugPrint('updatePassword : $response');
 
       if (response.data == null || response.data == '') {
         return Left(GetDataFailure(message: 'User bad request'));
@@ -373,13 +373,13 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       Response response =
           await _authApi.referralApi(referralCode: referralCode);
-          debugPrint('getUserHistoryDetails : $response');
+      debugPrint('getUserHistoryDetails : $response');
 
       if (response.data == null || response.data == '') {
         return Left(GetDataFailure(message: 'User bad request'));
       } else if (response.data.toString().contains('error')) {
-        return Left(
-            GetDataFailure(message: response.data['errors']["refferal_code"][0]));
+        return Left(GetDataFailure(
+            message: response.data['errors']["refferal_code"][0]));
       } else {
         if (response.statusCode == 400 || response.statusCode == 500) {
           return Left(GetDataFailure(message: response.data["message"]));

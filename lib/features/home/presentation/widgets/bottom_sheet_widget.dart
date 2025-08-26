@@ -234,7 +234,7 @@ class BottomSheetWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.02,
-          vertical: size.width * 0.02,
+          vertical: size.width * 0.035,
         ),
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
